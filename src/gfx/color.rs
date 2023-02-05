@@ -15,11 +15,11 @@ impl Color {
     {
         let (b, g, r, _) = (iter.next(), iter.next(), iter.next(), iter.next());
 
-        Some(Color::<u8>::new(*r?, *g?, *b?))
+        Some(Color::new(*r?, *g?, *b?))
     }
 
     pub fn black() -> Color {
-        Color::<u8>::new(0, 0, 0)
+        Color::splat(0)
     }
 }
 

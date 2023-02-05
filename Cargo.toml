@@ -3,13 +3,18 @@ name = "carbonyl"
 version = "0.0.1"
 edition = "2021"
 
-[dependencies]
-libc = "0.2"
-unicode-width = "0.1.10"
-unicode-segmentation = "1.10.0"
-chrono = "0.4.23"
-
 [lib]
 name = "carbonyl"
 path = "src/lib.rs"
-crate-type = ["cdylib"]
+crate-type = ["rlib", "cdylib"]
+
+[[bin]]
+name = "test_quad"
+
+[dependencies]
+chrono = "0.4.23"
+libc = "0.2"
+png = "0.17.7"
+unicode-width = "0.1.10"
+unicode-segmentation = "1.10.0"
+image = "0.24.5"

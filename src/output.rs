@@ -2,6 +2,7 @@
 // mod quantizer;
 mod cell;
 mod painter;
+pub mod quad;
 mod renderer;
 mod size;
 mod xterm;

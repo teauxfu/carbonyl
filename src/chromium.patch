@@ -1573,7 +1573,7 @@ index 81261215c702f..b8eb5fc429a2a 100644
 -      std::max(old_host_bounds.height(), bounds.y() + bounds.height()));
 -  web_contents->window_tree_host()->SetBoundsInPixels(new_host_bounds);
 -  web_contents->window_tree_host()->window()->SetBounds(new_host_bounds);
-+  web_contents->window_tree_host()->SetBoundsInPixels(ScaleToEnclosedRect(bounds, 1.0 / 7.0));
++  web_contents->window_tree_host()->SetBoundsInPixels(ScaleToEnclosedRect(bounds, 1.0 / 4.0));
 +  web_contents->window_tree_host()->window()->SetBounds(bounds);
  
    gfx::NativeView native_view = web_contents->web_contents()->GetNativeView();
@@ -1587,7 +1587,7 @@ index 28f1a65f6dce5..e595735be187b 100644
    static int64_t synthesized_display_id = 2000;
    display::Display display(synthesized_display_id++);
 -  display.SetScaleAndBounds(1.0f, screen_bounds);
-+  display.SetScaleAndBounds(1.0f / 7.0, ScaleToEnclosedRect(screen_bounds, 1.0 / 7.0));
++  display.SetScaleAndBounds(1.0f / 4.0, ScaleToEnclosedRect(screen_bounds, 1.0 / 4.0));
    ProcessDisplayChanged(display, true /* is_primary */);
  }
  
@@ -1916,11 +1916,11 @@ index 6207b72d17cb9..79cb8c85b697f 100644
 +  font.SetFamily(family);
 +  font.SetStretch(ExtraExpandedWidthValue());
 +  font.SetKerning(FontDescription::kNoneKerning);
-+  font.SetComputedSize(11.75 / 7.0);
++  font.SetComputedSize(11.75 / 4.0);
 +  font.SetGenericFamily(FontDescription::kMonospaceFamily);
 +  font.SetIsAbsoluteSize(true);
 +  state.StyleBuilder().SetFontDescription(font);
-+  state.StyleBuilder().SetLineHeight(Length::Fixed(14.0 / 7.0));
++  state.StyleBuilder().SetLineHeight(Length::Fixed(14.0 / 4.0));
 +
    state.LoadPendingResources();
  
@@ -2265,7 +2265,7 @@ index 466ef1fd1fe6e..45991ed58f16b 100644
 -  if (g_forced_device_scale_factor < 0)
 -    g_forced_device_scale_factor = GetForcedDeviceScaleFactorImpl();
 -  return g_forced_device_scale_factor;
-+  return 1.0 / 7.0;
++  return 1.0 / 4.0;
  }
  
  // static

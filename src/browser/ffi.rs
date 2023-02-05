@@ -124,7 +124,7 @@ pub extern "C" fn carbonyl_renderer_create() -> *mut Renderer {
 
     log::debug!("Terminal size: {:?}", src);
 
-    renderer.set_size(Size::new(7, 14), src);
+    renderer.set_size(Size::new(4, 8), src);
 
     Box::into_raw(renderer)
 }
@@ -194,8 +194,8 @@ pub extern "C" fn carbonyl_output_get_size(size: *mut CSize) {
 
     log::debug!("Terminal size: {:?}", src);
 
-    dst.width = src.width * 7;
-    dst.height = src.height * 14;
+    dst.width = src.width * 4;
+    dst.height = src.height * 8;
 }
 
 /// Function called by the C++ code to listen for input events.
@@ -204,8 +204,8 @@ pub extern "C" fn carbonyl_output_get_size(size: *mut CSize) {
 /// It will panic if there is any error.
 #[no_mangle]
 pub extern "C" fn carbonyl_input_listen(renderer: *mut Renderer, delegate: *mut BrowserDelegate) {
-    let char_width = 7;
-    let char_height = 14;
+    let char_width = 4;
+    let char_height = 8;
     let (
         renderer,
         BrowserDelegate {

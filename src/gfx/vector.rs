@@ -84,7 +84,7 @@ macro_rules! impl_vector_overload {
     ($struct:ident $x:ident $y:ident) => (
         impl<T: Copy> $struct<T> {
             pub const fn new($x: T, $y: T) -> $struct<T> {
-                $struct { $x, $y }
+                Self { $x, $y }
             }
 
             pub const fn splat(value: T) -> Self {
@@ -154,7 +154,7 @@ macro_rules! impl_vector_overload {
     ($struct:ident $x:ident $y:ident $z:ident) => (
         impl<T: Copy> $struct<T> {
             pub const fn new($x: T, $y: T, $z: T) -> $struct<T> {
-                $struct { $x, $y, $z }
+                Self { $x, $y, $z }
             }
 
             pub const fn splat(value: T) -> Self {
@@ -310,6 +310,26 @@ macro_rules! impl_vector_traits {
 
                 (self & rhs) + (self ^ rhs) / 2
             }
+
+            pub fn min<U>(&self, min: U) -> Self
+            where
+                U: Into<Self>
+            {
+                self.iter()
+                    .zip(min.into().iter())
+                    .map(|(x, y)| x.min(y))
+                    .collect()
+            }
+
+            pub fn max<U>(&self, max: U) -> Self
+            where
+                U: Into<Self>
+            {
+                self.iter()
+                    .zip(max.into().iter())
+                    .map(|(x, y)| x.max(y))
+                    .collect()
+            }
         }
     );
     ($struct:ident $vector:ident $type:ident float) => (
@@ -338,6 +358,17 @@ macro_rules! impl_vector_traits {
                 self.map(|v| v.round())
             }
 
+            pub fn clamp<U>(&self, min: U, max: U) -> Self
+            where
+                U: Into<Self>
+            {
+                self.iter()
+                    .zip(min.into().iter())
+                    .zip(max.into().iter())
+                    .map(|((x, y), z)| x.clamp(y, z))
+                    .collect()
+            }
+
             pub fn min<U>(&self, min: U) -> Self
             where
                 U: Into<Self>
@@ -355,17 +386,6 @@ macro_rules! impl_vector_traits {
                 self.iter()
                     .zip(max.into().iter())
                     .map(|(x, y)| x.max(y))
-                    .collect()
-            }
-
-            pub fn clamp<U>(&self, min: U, max: U) -> Self
-            where
-                U: Into<Self>
-            {
-                self.iter()
-                    .zip(min.into().iter())
-                    .zip(max.into().iter())
-                    .map(|((x, y), z)| x.clamp(y, z))
                     .collect()
             }
         }
