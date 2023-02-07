@@ -3,12 +3,7 @@
     <tr>
       <td>
         <p></p>
-        <pre>
-   O    O
-    \  /
-O —— Cr —— O
-    /  \
-   O    O</pre>
+      <image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDxRN0Ug9Xc2O4WGiNRe5J6y1XSnhAer__ckJCyGbz2OS4o-z3rpinsdSMpYnlxg0L84&usqp=CAU">
       </td>
       <td><h1>Carbonyl</h1></td>
     </tr>
